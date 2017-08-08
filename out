@@ -1,0 +1,58 @@
+[
+    {
+        "Checks": [],
+        "Node": {
+            "Address": "192.168.10.10",
+            "CreateIndex": 1974,
+            "ID": "",
+            "Meta": {
+                "env": "dev",
+                "upstream_root": "dev.com_tjzw_root",
+                "version": "3"
+            },
+            "ModifyIndex": 1974,
+            "Node": "w1",
+            "TaggedAddresses": null
+        },
+        "Service": {
+            "Address": "10.0.0.10",
+            "CreateIndex": 1974,
+            "EnableTagOverride": false,
+            "ID": "web",
+            "ModifyIndex": 1974,
+            "Port": 8000,
+            "Service": "web",
+            "Tags": [
+                "sahaba_api"
+            ]
+        }
+    },
+    {
+        "Checks": [],
+        "Node": {
+            "Address": "192.168.10.12",
+            "CreateIndex": 1975,
+            "ID": "",
+            "Meta": {
+                "env": "dev",
+                "upstream_root": "hub.com_tjzw_root",
+                "version": "2"
+            },
+            "ModifyIndex": 1975,
+            "Node": "w2",
+            "TaggedAddresses": null
+        },
+        "Service": {
+            "Address": "10.0.0.12",
+            "CreateIndex": 1975,
+            "EnableTagOverride": false,
+            "ID": "web",
+            "ModifyIndex": 1975,
+            "Port": 8000,
+            "Service": "web",
+            "Tags": [
+                "hub"
+            ]
+        }
+    }
+]

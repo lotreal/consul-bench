@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "delay": "^2.0.0",
+    "got": "^7.1.0",
+    "mockjs": "^1.0.1-beta3",
+    "pino": "^4.7.1",
+    "repeat": "0.0.6"
+  }
+}

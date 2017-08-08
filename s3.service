@@ -1,0 +1,16 @@
+{
+  "Node": "foobar",
+  "Address": "192.168.10.10",
+  "NodeMeta": {
+    "zbj_run_env": "dev"
+  },
+  "Service": {
+    "Service": "sahaba-api",
+    "Tags": [
+      "primary",
+      "v1"
+    ],
+    "Address": "10.0.0.10",
+    "Port": 8000
+  }
+}

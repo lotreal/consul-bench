@@ -1,0 +1,16 @@
+{
+  "Node": "node3",
+  "Address": "192.168.10.13",
+  "NodeMeta": {
+    "zbj_run_env": "prod"
+  },
+  "Service": {
+    "Service": "sahaba-docs",
+    "Tags": [
+      "primary",
+      "v1"
+    ],
+    "Address": "10.0.0.13",
+    "Port": 8000
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "Node": "w3",
+  "Address": "192.168.10.13",
+  "NodeMeta": {
+    "env": "prod",
+    "upstream_root": "hub.com_tjzw_root",
+    "version": "2"
+  },
+  "Service": {
+    "Service": "web",
+    "Tags": [
+      "hub"
+    ],
+    "Address": "10.0.0.12",
+    "Port": 8000
+  }
+}

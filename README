@@ -1,0 +1,18 @@
+# 启动 consul
+
+consul agent -dev -client 0.0.0.0 -ui-dir /opt/consul-ui/
+
+# 注册测试服务
+
+curl -X PUT -d @services http://127.0.0.1:8500/v1/agent/service/register
+
+# 读取 search 服务信息
+
+curl http://127.0.0.1:8500/v1/catalog/service/search | python -m json.tool
+
+# 参考链接
+
+https://github.com/JoergM/consul-examples/tree/master/http_api
+https://www.consul.io/docs/agent/options.html
+https://www.consul.io/docs/agent/http/catalog.html#catalog_services
+https://www.consul.io/docs/agent/http/agent.html#agent_service_register

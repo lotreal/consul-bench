@@ -1,0 +1,10 @@
+{
+  "ID": "web1",
+  "Name": "web",
+  "Tags": [
+    "search"
+  ],
+  "Address": "192.168.1.1",
+  "Port": 80,
+  "EnableTagOverride": false
+}

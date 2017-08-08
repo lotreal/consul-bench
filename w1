@@ -1,0 +1,17 @@
+{
+  "Node": "w1",
+  "Address": "192.168.10.10",
+  "NodeMeta": {
+    "env": "dev",
+    "upstream_root": "dev.com_tjzw_root",
+    "version": "3"
+  },
+  "Service": {
+    "Service": "web",
+    "Tags": [
+      "sahaba_api"
+    ],
+    "Address": "10.0.0.10",
+    "Port": 8000
+  }
+}

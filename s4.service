@@ -1,0 +1,16 @@
+{
+  "Node": "node2",
+  "Address": "192.168.10.12",
+  "NodeMeta": {
+    "zbj_run_env": "dev"
+  },
+  "Service": {
+    "Service": "sahaba-cloud",
+    "Tags": [
+      "primary",
+      "v1"
+    ],
+    "Address": "10.0.0.12",
+    "Port": 8000
+  }
+}
