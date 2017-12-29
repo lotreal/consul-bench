@@ -5,7 +5,7 @@ var got = require('got');
 var pino = require('pino');
 var logger = pino({
     name: 'consul',
-    level: 'warn',
+    level: 'info',
     serializers: {
         req: pino.stdSerializers.req,
         res: pino.stdSerializers.res
@@ -30,7 +30,7 @@ var web = function() {
             "upstream_root": tag + ".@tld"
         },
         "Service": {
-            "Service": "web",
+            "Service": "bench",
             "Tags": [
                 tag
             ],
@@ -43,8 +43,9 @@ var web = function() {
 var catalog_register_payload = web();
 
 
-var consul = function(opts) {
-    var endpoint = opts + '/v1';
+var consul = function(server) {
+    console.log(`http://${server}/v1`);
+    var endpoint = server + '/v1';
 
     var getServiceName = (payload) => payload.Service.Service;
     var getMetaID = (payload) => payload.NodeMeta.id;
@@ -53,8 +54,9 @@ var consul = function(opts) {
         bench: function (payload) {
             var client = this;
             var t1 = Date.now();
+            var serviceName = getServiceName(payload);
 
-            client.query(payload)
+            client.query(serviceName)
                 .then(response => {
                     var index = response.headers['x-consul-index'];
 
@@ -102,8 +104,7 @@ var consul = function(opts) {
             return got(url, { query, json: true } );
         },
 
-        query: function(payload) {
-            var serviceName = getServiceName(payload);
+        query: function(serviceName) {
             var url = endpoint + '/catalog/service/' + serviceName;
             return got(url, {
                 json: true
@@ -111,7 +112,7 @@ var consul = function(opts) {
         },
 
         deregister: function(service) {
-            var url = endpoint + '/v1/catalog/deregister';
+            var url = endpoint + '/catalog/deregister';
             return got.put(url, {
                 body: JSON.stringify({
                     Node: service.Node,
@@ -186,20 +187,21 @@ var register_bench2 = () => {
         });
 };
 
-// register_bench2();
-// register_bench2();
+var deregisterAll = (serviceName) => {
+    var c1 = consul("http://172.26.5.27:8500");
 
-repeat(register_bench2).every(500, 'ms').for(60, 'minutes').start.in(0, 'sec');
+    c1.query(serviceName)
+        .then(response => {
+            response.body.forEach((service, i) => {
+                c1.deregister(service);
+            });
+        })
+        .catch(error => {
+            console.log(error);
+        });
+};
 
-// for (var i=0; i<1000; i++) {
-//     register_bench2();
-// }
-// register_bench();
-// .then(response => {
-//     console.log(response.body);
-//     //=> '<!doctype html> ...'
-// })
-// .catch(error => {
-//     console.log(error.response.body);
-//     //=> 'Internal server error ...'
-// });
+// repeat(register_bench2).every(500, 'ms').for(60, 'minutes').start.in(0, 'sec');
+// deregisterAll('bench');
+
+var c = consul('172.26.5.27:8500');
